@@ -8,11 +8,9 @@
 
 <div id="app">
     <!--最终的遍历结构  假数据-->
-    <table  border="1" width="100%">
-        <tr v-for="(item,index) in test">
-            <td >{{index===0 ? item.one : ''}}</td>
-            <td>{{item.two}}</td>
-            <td v-for="item2 in item.values">{{item2}}</td>
+    <table v-for="item in test"  border="1" width="100%">
+        <tr v-for="item2 in item.specLevelOnes">
+            <td>{{item2.cnName}}</td>
         </tr>
     </table>
     <hr>
@@ -68,22 +66,8 @@
     // 这是三个产品，他们的数据只有最后一层的value不一样，想要的结构就是下面的vue里面的数据格式
     var arr=obj.returnData.OutSpecCompare.outSkuSpec;  // 这是原始数据
     console.log(arr);
-    function format(originArr){
-        let result = [];
-        originArr[0].specLevelOnes.forEach((oneItem,oneIndex)=>{
-            originArr[0].specLevelOnes[oneIndex].specleveltwos.forEach((twoItem,twoIndex)=>{
-                result.push({
-                    one:oneItem.cnName,
-                    two:twoItem.cnName,
-                    values:originArr.map(item=>item.specLevelOnes[oneIndex].specleveltwos[twoIndex].value)
-                });
-            });
-        });
-        return result
-    }
-    console.log(format(arr))
     //自己瞎搞的
-/*    function MyArr(one,two,values) {
+    function MyArr(one,two,values) {
         this.one=one;
         this.two=two;
         this.values=values;
@@ -106,22 +90,46 @@
             }
         }
     }
-    console.log(myArr);*/
+    console.log("myArr",myArr);
+    var allValueArr = [];
+    for(var x = 0;x < myArr.length;x++){
+        var valueArr = [];
+        var valueObj = {};
+        for(var y = x;y < myArr.length;y++){
+            if(myArr[x]['one'] === myArr[y]['one']){
+                if(myArr[x]['two'] === myArr[y]['two']){
+                    valueArr.push(myArr[y]['values']);
+                    // console.log("a",valueArr)
+                    valueObj.one = myArr[y]['one']
+                    valueObj.two = myArr[y]['two']
+                    valueObj.values = valueArr
+                }
+            }
+        }
+        console.log(valueObj);
+        if(valueArr.length >= 3){
+            allValueArr.push(valueObj);
+        }
+
+    }
+    console.log("allValueArr",allValueArr);
     new Vue({
         el:'#app',
         data:{
-            test:[  // 这是想要的数据格式，
-                {
-                    one:'一般规格',
-                    two:'重量',
-                    values:[1,2,3]
-                },
-                {
-                    one:'一般规格',
-                    two:'"尺寸（宽 x 高 x 深）"',
-                    values:[11,22,33]
-                }
-            ]
+            // test:[  // 这是想要的数据格式，
+            //     {
+
+            //         one:'一般规格',
+            //         two:'重量',
+            //         values:[1,2,3]
+            //     },
+            //     {
+            //         one:'一般规格',
+            //         two:'"尺寸（宽 x 高 x 深）"',
+            //         values:[11,22,33]
+            //     }
+            // ]
+            test: arr
         }
     })
 </script>

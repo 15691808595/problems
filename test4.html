@@ -68,20 +68,6 @@
     // 这是三个产品，他们的数据只有最后一层的value不一样，想要的结构就是下面的vue里面的数据格式
     var arr=obj.returnData.OutSpecCompare.outSkuSpec;  // 这是原始数据
     console.log(arr);
-    function format(originArr){
-        let result = [];
-        originArr[0].specLevelOnes.forEach((oneItem,oneIndex)=>{
-            originArr[0].specLevelOnes[oneIndex].specleveltwos.forEach((twoItem,twoIndex)=>{
-                result.push({
-                    one:oneItem.cnName,
-                    two:twoItem.cnName,
-                    values:originArr.map(item=>item.specLevelOnes[oneIndex].specleveltwos[twoIndex].value)
-                });
-            });
-        });
-        return result
-    }
-    console.log(format(arr))
     //自己瞎搞的
 /*    function MyArr(one,two,values) {
         this.one=one;
@@ -107,6 +93,30 @@
         }
     }
     console.log(myArr);*/
+    function format(originArr){
+        let result = [];
+        originArr[0].specLevelOnes.forEach((oneItem,oneIndex)=>{
+            originArr[0].specLevelOnes[oneIndex].specleveltwos.forEach((twoItem,twoIndex)=>{
+                result.push({
+                    one:oneItem.cnName,
+                    two:twoItem.cnName,
+//                    values:originArr.map(item=>item.specLevelOnes[oneIndex].specleveltwos[twoIndex].value)
+                    values:(function (originArr) {
+                        var _arr=[];
+                        originArr.forEach(function (item) {
+                            if(item.specLevelOnes[oneIndex].specleveltwos[twoIndex].value){
+                                _arr.push(item.specLevelOnes[oneIndex].specleveltwos[twoIndex].value)
+                            }
+                        })
+                        return _arr;
+                    })(originArr)
+                });
+            });
+        });
+        return result
+    }
+    console.log(format(arr))
+    console.log([1,2,3].map(item=>item));
     new Vue({
         el:'#app',
         data:{
@@ -124,6 +134,35 @@
             ]
         }
     })
+    var ttt=[
+        {
+            a:'aa'
+        },
+        {
+            a:'bb'
+        },
+        {
+            a:'cc'
+        }
+    ]
+    function getValueArr(arr) {
+        var _arr=[];
+        arr.forEach(function (item) {
+            if(item.a){
+                _arr.push(item.a)
+            }
+        })
+        return _arr;
+    }
+    function getValueArr2(item) {
+        var _arr=[];
+        if(item){
+            _arr.push(item)
+        }
+        return _arr;
+    }
+    console.log(ttt.map(item=>item.a));
+    console.log(getValueArr(ttt));
 </script>
 </body>
 </html>
