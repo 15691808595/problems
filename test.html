@@ -7,6 +7,7 @@
 <body>
 
 <div id="app">
+    <!--最终的遍历结构  假数据-->
     <table  border="1" width="100%">
         <tr v-for="(item,index) in test">
             <td >{{index===0 ? item.one : ''}}</td>
@@ -15,6 +16,7 @@
         </tr>
     </table>
     <hr>
+    <!--最终的遍历结构  假数据-->
     <table border="1" width="100%">
         <tr>
             <td>"一般规格"</td>
@@ -63,9 +65,11 @@
 <script src="vue.js"></script>
 <script src="tets.js"></script>
 <script>
-    var arr=obj.returnData.OutSpecCompare.outSkuSpec;
+    // 这是三个产品，他们的数据只有最后一层的value不一样，想要的结构就是下面的vue里面的数据格式
+    var arr=obj.returnData.OutSpecCompare.outSkuSpec;  // 这是原始数据
     console.log(arr);
-    function MyArr(one,two,values) {
+    //自己瞎搞的
+/*    function MyArr(one,two,values) {
         this.one=one;
         this.two=two;
         this.values=values;
@@ -73,12 +77,26 @@
     function createMyArr(one,two,values) {
         return new MyArr(one,two,values)
     }
-    for(var )
-    console.log(new MyArr(1,2,[2,3,4]));
+    var myArr=[];
+    for(var i=0;i<arr.length;i++){
+//        console.log(arr[i].specLevelOnes);
+        for(var j=0;j<arr[i].specLevelOnes.length;j++){
+            for(var k=0;k<arr[i].specLevelOnes[j].specleveltwos.length;k++){
+                var one=arr[i].specLevelOnes[j].cnName;
+                var two=arr[i].specLevelOnes[j].specleveltwos[k].cnName;
+                var value=arr[i].specLevelOnes[j].specleveltwos[k].value
+//                console.log(arr[i].specLevelOnes[j].specleveltwos[k].value);
+                console.log(I!==i);
+                var I=i;
+                myArr.push(new MyArr(one,two,value))
+            }
+        }
+    }
+    console.log(myArr);*/
     new Vue({
         el:'#app',
         data:{
-            test:[
+            test:[  // 这是想要的数据格式，
                 {
                     one:'一般规格',
                     two:'重量',
