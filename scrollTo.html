@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Szy1000</title>
+    <style>
+        .ss{
+            height: 600px;
+            background-color: #0a628f;
+        }
+        .nav{
+            height: 60px;
+        }
+        .nav.active{
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            background-color: orange;
+        }
+        a{
+            display: inline-block;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+        }
+        #aa,#bb{
+            height: 900px;
+            background-color: red;
+        }
+        #bb{
+            background-color: gainsboro;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="ss"></div>
+    <div class="nav active">
+        <a href="javascript:;" onclick="locateAt('aa')">导航1</a>
+        <a href="javascript:;" onclick="locateAt('bb')">导航2</a>
+    </div>
+    <div id="aa">aa</div>
+    <div id="bb">bb</div>
+
+</div>
+<script>
+    function locateAt(e){
+        e =  document.getElementById(e);/*以id命名的锚点*/
+        y = e.offsetTop;
+        while(e=e.offsetParent){ y += e.offsetTop;}
+        y-=60;/*悬浮菜单的高度*/
+        window.scrollTo(0,y);
+    }
+</script>
+</body>
+</html>
