@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<div class="cont">
+    <h2  class="test">1            用户名正则</h2><pre>//用户名正则，4到16位（字母，数字，下划线，减号）
+var uPattern = /^[a-zA-Z0-9_-]{4,16}$/;
+//输出 true
+console.log(uPattern.test("caibaojian"));
+<p>密码的强度必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,10}$/;</code></div></div></td></tr></tbody></table>
+</pre><h2>2 密码强度正则</h2><pre>//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+var pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/;
+//输出 true
+console.log("=="+pPattern.test("caibaojian#"));
+
+密码长度6-12位，有数字，小写字母和大写字母组成，但至少包括两种字符<br>&nbsp;&nbsp;/((?=.*[0-9])(?=.*[a-z])|(?=.*[0-9])(?=.*[A-Z])|(?=.*[a-z])(?=.*[A-Z]))^[0-9A-Za-z]{6,12}$/<br>或者&nbsp;&nbsp;/(?!^[0-9]{6,12}$)(?!^[a-z]{6,12}$)(?!^[A-Z]{6,12}$)^[0-9A-Za-z]{6,12}$/
+</pre><h2>3 整数正则</h2><pre>//正整数正则
+var posPattern = /^\d+$/;
+//负整数正则
+var negPattern = /^-\d+$/;
+//整数正则
+var intPattern = /^-?\d+$/;
+//输出 true
+console.log(posPattern.test("42"));
+//输出 true
+console.log(negPattern.test("-42"));
+//输出 true
+console.log(intPattern.test("-42"));
+</pre><h2>4 数字正则</h2><p>可以是整数也可以是浮点数</p><pre>//正数正则
+var posPattern = /^\d*\.?\d+$/;
+//负数正则
+var negPattern = /^-\d*\.?\d+$/;
+//数字正则
+var numPattern = /^-?\d*\.?\d+$/;
+console.log(posPattern.test("42.2"));
+console.log(negPattern.test("-42.2"));
+console.log(numPattern.test("-42.2"));
+</pre><h2>5 Email正则</h2><pre>//Email正则
+var ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+//输出 true
+console.log(ePattern.test("99154507@qq.com"));
+<table><tbody><tr><td><div><div><code>var</code> <code>reg = /[\\w!</code><code>#$%&amp;'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?/;</code></div></div></td></tr></tbody></table>
+</pre><h2>6 手机号码正则</h2><pre>//手机号正则
+var mPattern = /^1[34578]\d{9}$/; //http://caibaojian.com/regexp-example.html
+//输出 true
+console.log(mPattern.test("15507621888"));
+<code>var</code> <code>reg = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$/;</code>
+</pre><h2>7 身份证号正则</h2><pre>//身份证号（18位）正则
+var cP = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+//输出 true
+console.log(cP.test("11010519880605371X"));
+<table><tbody><tr><td><div><div><code>15位：</code></div><div><code>var</code> <code>reg = /^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$/;</code></div><div><code>18位：</code></div><div><code>var</code> <code>reg = /^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}([0-9]|X)$/;</code></div></div></td></tr></tbody></table>
+</pre><h2>8 URL正则</h2><pre>//URL正则
+var urlP= /^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+
+/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/
+//输出 true
+console.log(urlP.test("http://caibaojian.com"));
+
+<h2>检查URL的前缀</h2><p>应用开发中很多时候需要区分请求是HTTPS还是HTTP，通过下面的表达式可以取出一个url的前缀然后再逻辑判断。</p><table><tbody><tr><td><div><div><code>if</code> <code>(!s.match(/^[a-zA-Z]+:\/\</code><code>//)) {</code></div><div><code>&nbsp;&nbsp;&nbsp;&nbsp;</code><code>s = </code><code>'<a href="http:">http://</a>'</code> <code>+ s;</code></div><div><code>}</code></div></div></td></tr></tbody></table>
+
+<h2>提取URL链接</h2><p>下面的这个表达式可以筛选出一段文本中的URL。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^(f|ht){1}(tp|tps):\/\/([\w-]+\.)+[\w-]+(\/[\w- ./?%&amp;=]*)?/;</code></div></div></td></tr></tbody></table>
+
+</pre><h2>9 IPv4地址正则</h2><pre>//ipv4地址正则
+var ipP = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+//输出 true
+console.log(ipP.test("115.28.47.26"));
+<code>var</code> <code>reg = /\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b/;</code>
+</pre><h2>10 十六进制颜色正则</h2><pre>//RGB Hex颜色正则
+var cPattern = /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
+//输出 true
+console.log(cPattern.test("#b8b8b8"));
+</pre><h2>11 日期正则</h2><pre>//日期正则，简单判定,未做月份及日期的判定
+var dP1 = /^\d{4}(\-)\d{1,2}\1\d{1,2}$/;
+//输出 true
+console.log(dP1.test("2017-05-11"));
+//输出 true
+console.log(dP1.test("2017-15-11"));
+//日期正则，复杂判定
+var dP2 = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
+//输出 true
+console.log(dP2.test("2017-02-11"));
+//输出 false
+console.log(dP2.test("2017-15-11"));
+//输出 false
+console.log(dP2.test("2017-02-29"));
+<code>var </code><code>reg1 = /^\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}$/;
+</code><code>
+var </code><code>reg2 = /^(^(\d{4}|\d{2})(\-|\/|\.)\d{1,2}\3\d{1,2}$)|(^\d{4}年\d{1,2}月\d{1,2}日$)$/;
+</code>
+
+<p>“yyyy-mm-dd” 格式的日期校验，已考虑平闰年。</p><table class=""><tbody><tr><td><div><div><code>var</code> <code>reg = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;</code></div></div></td></tr></tbody></table>
+
+匹配时间&nbsp;&nbsp;13:09<br>&nbsp;&nbsp;/^(0?[0-9]|1[0-9]|[2][0-3]):(0?[1-9]|[1-5][0-9])$/&nbsp;
+</pre><h2>12 QQ号码正则</h2><pre>//QQ号正则，5至11位
+var qqPattern = /^[1-9][0-9]{4,10}$/;
+//输出 true
+console.log(qqPattern.test("65974040"));
+</pre><h2>13 微信号正则</h2><pre>//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线
+var wxPattern = /^[a-zA-Z]([-_a-zA-Z0-9]{5,19})+$/;
+//输出 true
+console.log(wxPattern.test("caibaojian_com"));
+</pre><h2>14 车牌号正则</h2><pre>//车牌号正则
+var cPattern = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+//输出 true
+console.log(cPattern.test("粤B39006"));
+</pre><h2>15 包含中文正则</h2><pre>//包含中文正则
+var cnPattern = /[\u4E00-\u9FA5]/;
+//输出 true
+console.log(cnPattern.test("蔡宝坚"));</pre><p><br></p><h2>16 匹配图片路径</h2><p>1.有一个String 字段 “那份试卷农夫三陈女士将可能hukbik&lt;img alt="" src="x:/xx.jpg"/&gt;cbschgbsjkb补偿”，这样的字段，还有可能字段里还插了很多张图片，我要把图片路径输出来。也就是 x:/xx.jpg&nbsp;</p><pre>img.*?src="([C-Zc-z]:/.*?\.[A-Za-z0-9]+)"</pre><pre>/.*?(jpg|gif|png|bmp)    位图片路径</pre><p><br></p><h2>17. 校验金额</h2><p>金额校验，精确到2位小数。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^[0-9]+(.[0-9]{2})?$/;</code></div></div></td></tr></tbody></table><p><br></p><h2>18. 判断IE的版本</h2><p>IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\\/[5-9]\\.0).*$/;</code></div></div></td></tr></tbody></table><p><br></p><article><br><h2>19. 文件路径及扩展名校验</h2><p>验证windows下文件路径和扩展名（下面的例子中为.txt文件）</p><table><tbody><tr><td><div><div><code>var</code>&nbsp;<code>reg = /^([a-zA-Z]\\:|\\\\)\\\\([^\\]+\\)*[^\\/:*?"&lt;&gt;|]+\\.txt(l)?$/;</code></div></div></td></tr></tbody></table><br><br><br>3 匹配操作系统文件路径<br>&nbsp; &nbsp;F:\m-jr-web\static.png<br>&nbsp;&nbsp;/^[a-zA-Z]:\\([^\\:*&lt;&gt;|"?\r\n/"]+\\)*([^\\:*&lt;&gt;|"?\r\n/]+)"?$])/<br><br><br>4 给数字加千分位&nbsp;<br>"123456789".replace(/(?!^)(?=(\d{3})+$)/g, ',')&nbsp;&nbsp;===&gt; 123,456,789<br><br></article><article><br></article><article><h2>20. 提取Color Hex Codes</h2><p>有时需要抽取网页中的颜色代码，可以使用下面的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^</code><code>#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;</code></div></div></td></tr></tbody></table><br></article><article><br>1&nbsp;&nbsp;匹配色值&nbsp;&nbsp;#ffbbbb&nbsp;&nbsp;#Fff&nbsp;&nbsp;#10bbfe&nbsp;&nbsp;#ffF<br>/#([0-9a-fA-F]{6})|(0-9a-fA-F){3}/g<br></article><p><br></p><h2>21. 提取网页图片</h2><p>假若你想提取网页中所有图片信息，可以利用下面的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /\\&lt; *[img][^\\&gt;]*[src] *= *[\\</code><code>"\']{0,1}([^\\"</code><code>\'\ &gt;]*)/;</code></div></div></td></tr></tbody></table><h2>22 提取页面超链接</h2><p>提取html中的超链接。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=</code><code>"https?:\/\/)((?!(?:(?:www\\.)?'.implode('|(?:www\\.)?', $follow_list).'))[^"</code><code>]+)"((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;/;</code></div><div><code>&lt;/a\\s*(?!.*\\brel=)[^&gt;</code></div></div></td></tr></tbody></table><h2>23. 查找CSS属性</h2><p>通过下面的表达式，可以搜索到相匹配的CSS属性。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^\\s*[a-zA-Z\\-]+\\s*[:]{1}\\s[a-zA-Z0-9\\s.</code><code>#]+[;]{1}/;</code></div></div></td></tr></tbody></table><h2>24. 抽取注释</h2><p>如果你需要移除HMTL中的注释，可以使用如下的表达式。</p><p></p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /&lt;!--(.*?)--&gt;/;</code></div></div></td></tr></tbody></table><p><br></p><p>本文将会陆续收集前端表单中的正则验证。</p><p><br></p>
+<h1>h1</h1>
+<h3 style="color: red">h3</h3>
+</div>
+<ul id="list">
+
+</ul>
+<script src="js/jquery.min.js"></script>
+<script>
+
+
+    function addId(hn) {
+        var obj=$(hn)
+        for(var i=0;i<obj.length;i++){
+            obj.eq(i).attr('id',hn+'list'+i)
+        }
+    }
+    addId('h1');
+    addId('h2');
+    addId('h3');
+
+
+    var reg=/(<h[1-3]{1}[^<>]*>)(.*?)(<\/h[1-3]>)/g;
+    var str=document.getElementsByClassName('cont')[0].innerHTML;
+    var nowHtml='';
+    str.match(reg).map(function (i) {
+    var a=i.replace(reg,'$1');
+    var reg2=/<h[1-3][^<>]*?id="(\w+)">/;
+    if(a.match(reg2)){
+        nowHtml+='<li><a href="#'+a.match(reg2)[1]+'">'+i.replace(reg,("$2")).replace(/^\d{1,2}(\.)?(\s+)?/g,'')+'</a></li>';
+    }
+});
+    document.getElementById('list').innerHTML=nowHtml
+
+</script>
+</body>
+</html>
