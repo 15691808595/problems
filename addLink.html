@@ -6,6 +6,34 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #list{
+            height: 200px;
+            overflow: auto;
+        }
+        #list li{
+            position: relative;
+            list-style: none;
+            counter-increment: autoIndex;
+        }
+        #list li:before{
+            position: absolute;
+            top: 0;
+            left: -30px;
+            content: counter(autoIndex)'.';
+
+        }
+        /*滚动条样式*/
+        #list::-webkit-scrollbar {/*滚动条整体样式*/
+            width: 6px;     /*高宽分别对应横竖滚动条的尺寸*/
+        }
+        #list::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+            background: #29a9df;
+        }
+        #list::-webkit-scrollbar-track {/*滚动条里面轨道*/
+            background: #e6e6e6;
+        }
+    </style>
 </head>
 <body>
 
@@ -117,13 +145,13 @@ console.log(cPattern.test("粤B39006"));
 var cnPattern = /[\u4E00-\u9FA5]/;
 //输出 true
 console.log(cnPattern.test("蔡宝坚"));</pre><p><br></p><h2>16 匹配图片路径</h2><p>1.有一个String 字段 “那份试卷农夫三陈女士将可能hukbik&lt;img alt="" src="x:/xx.jpg"/&gt;cbschgbsjkb补偿”，这样的字段，还有可能字段里还插了很多张图片，我要把图片路径输出来。也就是 x:/xx.jpg&nbsp;</p><pre>img.*?src="([C-Zc-z]:/.*?\.[A-Za-z0-9]+)"</pre><pre>/.*?(jpg|gif|png|bmp)    位图片路径</pre><p><br></p><h2>17. 校验金额</h2><p>金额校验，精确到2位小数。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^[0-9]+(.[0-9]{2})?$/;</code></div></div></td></tr></tbody></table><p><br></p><h2>18. 判断IE的版本</h2><p>IE目前还没被完全取代，很多页面还是需要做版本兼容，下面是IE版本检查的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^.*MSIE [5-8](?:\\.[0-9]+)?(?!.*Trident\\\/[5-9]\\.0).*$/;</code></div></div></td></tr></tbody></table><p><br></p><article><br><h2>19. 文件路径及扩展名校验</h2><p>验证windows下文件路径和扩展名（下面的例子中为.txt文件）</p><table><tbody><tr><td><div><div><code>var</code>&nbsp;<code>reg = /^([a-zA-Z]\\:|\\\\)\\\\([^\\]+\\)*[^\\/:*?"&lt;&gt;|]+\\.txt(l)?$/;</code></div></div></td></tr></tbody></table><br><br><br>3 匹配操作系统文件路径<br>&nbsp; &nbsp;F:\m-jr-web\static.png<br>&nbsp;&nbsp;/^[a-zA-Z]:\\([^\\:*&lt;&gt;|"?\r\n/"]+\\)*([^\\:*&lt;&gt;|"?\r\n/]+)"?$])/<br><br><br>4 给数字加千分位&nbsp;<br>"123456789".replace(/(?!^)(?=(\d{3})+$)/g, ',')&nbsp;&nbsp;===&gt; 123,456,789<br><br></article><article><br></article><article><h2>20. 提取Color Hex Codes</h2><p>有时需要抽取网页中的颜色代码，可以使用下面的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^</code><code>#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/;</code></div></div></td></tr></tbody></table><br></article><article><br>1&nbsp;&nbsp;匹配色值&nbsp;&nbsp;#ffbbbb&nbsp;&nbsp;#Fff&nbsp;&nbsp;#10bbfe&nbsp;&nbsp;#ffF<br>/#([0-9a-fA-F]{6})|(0-9a-fA-F){3}/g<br></article><p><br></p><h2>21. 提取网页图片</h2><p>假若你想提取网页中所有图片信息，可以利用下面的表达式。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /\\&lt; *[img][^\\&gt;]*[src] *= *[\\</code><code>"\']{0,1}([^\\"</code><code>\'\ &gt;]*)/;</code></div></div></td></tr></tbody></table><h2>22 提取页面超链接</h2><p>提取html中的超链接。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /(&lt;a\\s*(?!.*\\brel=)[^&gt;]*)(href=</code><code>"https?:\/\/)((?!(?:(?:www\\.)?'.implode('|(?:www\\.)?', $follow_list).'))[^"</code><code>]+)"((?!.*\\brel=)[^&gt;]*)(?:[^&gt;]*)&gt;/;</code></div><div><code>&lt;/a\\s*(?!.*\\brel=)[^&gt;</code></div></div></td></tr></tbody></table><h2>23. 查找CSS属性</h2><p>通过下面的表达式，可以搜索到相匹配的CSS属性。</p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /^\\s*[a-zA-Z\\-]+\\s*[:]{1}\\s[a-zA-Z0-9\\s.</code><code>#]+[;]{1}/;</code></div></div></td></tr></tbody></table><h2>24. 抽取注释</h2><p>如果你需要移除HMTL中的注释，可以使用如下的表达式。</p><p></p><table><tbody><tr><td><div><div><code>var</code> <code>reg = /&lt;!--(.*?)--&gt;/;</code></div></div></td></tr></tbody></table><p><br></p><p>本文将会陆续收集前端表单中的正则验证。</p><p><br></p>
-<h1>h1</h1>
-<h3 style="color: red">h3</h3>
+    <h1>h1</h1>
+    <h3 style="color: red">h3</h3>
 </div>
 <ul id="list">
 
 </ul>
-<script src="js/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script>
 
 
@@ -142,12 +170,12 @@ console.log(cnPattern.test("蔡宝坚"));</pre><p><br></p><h2>16 匹配图片路
     var str=document.getElementsByClassName('cont')[0].innerHTML;
     var nowHtml='';
     str.match(reg).map(function (i) {
-    var a=i.replace(reg,'$1');
-    var reg2=/<h[1-3][^<>]*?id="(\w+)">/;
-    if(a.match(reg2)){
-        nowHtml+='<li><a href="#'+a.match(reg2)[1]+'">'+i.replace(reg,("$2")).replace(/^\d{1,2}(\.)?(\s+)?/g,'')+'</a></li>';
-    }
-});
+        var a=i.replace(reg,'$1');
+        var reg2=/<h[1-3][^<>]*?id="(\w+)">/;
+        if(a.match(reg2)){
+            nowHtml+='<li><a href="#'+a.match(reg2)[1]+'">'+i.replace(reg,("$2")).replace(/^\d{1,2}(\.)?(\s+)?/g,'')+'</a></li>';
+        }
+    });
     document.getElementById('list').innerHTML=nowHtml
 
 </script>
