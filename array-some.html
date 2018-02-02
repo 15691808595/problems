@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+<div class="cont">
+    <h1>123</h1>
+    <h1>123</h1>
+    <h1>123</h1>
+    <p>
+        (h1dfghjkl;5678h1)
+        (h1dfrghjkl;5678ih1)
+        (h2dfrghjkl;5678ih2)
+        (h2dfrghjkl;5678ih3)
+    </p>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    var arr1 = [{
+        "sku8D": "P02444975",
+        "enName": "FDR-X3000 官方标配套装",
+        "cnName": "FDR-X3000 4K高清酷拍运动相机/迷你摄像机 官方标配套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000_w.jpg"
+    },  {
+        "sku8D": "P02445075",
+        "enName": "FDR-X3000R 实时监控套装",
+        "cnName": "FDR-X3000R 4K高清酷拍运动相机/迷你摄像机 实时监控套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000r_lvr3_1.jpg"
+    }, {
+        "sku8D": "P50000215",
+        "enName": "FDR-X3000R 自拍杆套装",
+        "cnName": "FDR-X3000R 4K高清酷拍运动相机/迷你摄像机 自拍杆套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000r_amp1_1.jpg"
+    }, {
+        "sku8D": "P50000341",
+        "enName": "FDR-X3000R 指环套装",
+        "cnName": "FDR-X3000R 4K高清酷拍运动相机/迷你摄像机 指环套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000r_fgp1_1.jpg"
+    }, {
+        "sku8D": "P02444875",
+        "enName": "HDR-AS300R 实时监控套装",
+        "cnName": "HDR-AS300R 高清酷拍运动相机/迷你摄像机 实时监控套装 （光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as300r/product/img_hdr_as300r_lvr3_1.jpg"
+    }, {
+        "sku8D": "P50000217",
+        "enName": "HDR-AS300R 旅游手持套装",
+        "cnName": "HDR-AS300R 高清酷拍运动相机/迷你摄像机 旅游手持套装（光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as300r/product/img_hdr_as300r_stg1_1.jpg"
+    }, {
+        "sku8D": "P50399120",
+        "enName": "HDR-AS300R 指环套装",
+        "cnName": "HDR-AS300R 高清酷拍运动相机/迷你摄像机 指环套装 （光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as300r/product/img_hdr_as300r_fgp1_1.jpg"
+    }, {
+        "sku8D": "P02444775",
+        "enName": "HDR-AS300 官方标配套装",
+        "cnName": "HDR-AS300 高清酷拍运动相机/迷你摄像机 官方标配套装 （光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as300r/product/img_hdr_as300_w.jpg"
+    }, {
+        "sku8D": "P50000247",
+        "enName": "HDR-AS300R 自拍杆套装",
+        "cnName": "HDR-AS300R 高清酷拍运动相机/迷你摄像机 自拍杆套装 （光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as300r/product/img_hdr_as300r_amp1_1.jpg"
+    }, {
+        "sku8D": "P50773657",
+        "enName": "HDR-AS50R 旅游手持套装",
+        "cnName": "HDR-AS50R 高清酷拍运动相机/迷你摄像机 旅游手持套装（防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as50/product/img_hdr_as50r_stg1_1.jpg"
+    }, {
+        "sku8D": "P50000342",
+        "enName": "HDR-AS50R 指环套装",
+        "cnName": "HDR-AS50R 高清酷拍运动相机/迷你摄像机 指环套装（防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as50/product/img_hdr_as50r_fgp1_1.jpg"
+    }, {
+        "sku8D": "P02444675",
+        "enName": "HDR-AS50R 实时监控套装",
+        "cnName": "HDR-AS50R 高清酷拍运动相机/迷你摄像机 实时监控套装（防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as50/product/img_hdr_as50r_lvr3_3.jpg"
+    }, {
+        "sku8D": "P50773724",
+        "enName": "HDR-AS50R 骑行套装",
+        "cnName": "HDR-AS50R 高清酷拍运动相机/迷你摄像机 骑行套装（防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as50/product/img_hdr_as50r_uhm1_1.jpg"
+    }, {
+        "sku8D": "P02444575",
+        "enName": "HDR-AS50 官方标配套装",
+        "cnName": "HDR-AS50 高清酷拍运动相机/迷你摄像机 官方标配套装（防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/hdr_as50/product/img_hdr_as50_b_2.jpg"
+    },{
+        "sku8D": "P50000216",
+        "enName": "FDR-X3000R 旅游手持套装",
+        "cnName": "FDR-X3000R 4K高清酷拍运动相机/迷你摄像机 旅游手持套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000r_stg1_1.jpg"
+    },];
+    var arr2 = [{
+        "sku8D": "P02444975",
+        "enName": "FDR-X3000 官方标配套装",
+        "cnName": "FDR-X3000 4K高清酷拍运动相机/迷你摄像机 官方标配套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000_w.jpg"
+    }, {
+        "sku8D": "P50000216",
+        "enName": "FDR-X3000R 旅游手持套装",
+        "cnName": "FDR-X3000R 4K高清酷拍运动相机/迷你摄像机 旅游手持套装（4K光学防抖 60米防水壳 3倍变焦）",
+        "imagePath": "/content/dam/sonystyle/products/action-cam/fdr_x3000r/product/img_fdr_x3000r_stg1_1.jpg"
+    }];
+
+    console.log(arr1);
+    arr2.forEach((item, index) => {
+        arr1.some((item2, index2) => {
+            console.log(index2);
+            if (item.sku8D === item2.sku8D) {
+                arr1.splice(index2, 1);
+                return true
+            }
+        })
+    })
+    console.log(arr1);
+</script>
+</body>
+</html>
