@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .layer{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate3d(-50%,-50%,0);
+            width: 600px;
+            height: 630px;
+            border: 1px solid;
+            overflow: scroll;
+        }
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            float: left;
+            list-style: none;
+        }
+        .btm li{
+            width: 300px;
+            height: 200px;
+            border: 1px solid;
+            box-sizing: border-box;
+        }
+        .fl{
+            float: left;
+            height: 40px;
+        }
+        .fr{
+            float: right;
+        }
+        .clearfix:after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .search{
+            position: relative;
+        }
+        .search-result{
+            position: absolute;
+            top:23px;
+            left: 0;
+            background: #fff;
+        }
+        .search-result li{
+            border-bottom: 1px solid;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <button @click="showLayer">点击出现浮层</button>
+    <div class="layer" v-show="isShow" @click="blurInput">
+        <div  class="top clearfix">
+            <div class="fl search">
+                <input @click.stop  @focus="focusInput"  v-model="inputVal" type="text">
+                <div class="search-result" v-show="serachResult">
+                    <ul>
+                        <li v-for="item in myData" @click="selectItem(item)">{{item.enName}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fr">
+                <button @click="showLayer">关闭</button>
+            </div>
+        </div>
+        <div class="btm">
+            <ul class="clearfix">
+                <li v-for="item in myData">{{item.enName}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<script src="test.js"></script>
+<script src="js/vue.js"></script>
+<script>
+    console.log(data.returnData.OutCompareList);
+    var myData=data.returnData.OutCompareList;
+    new Vue({
+        el:'#app',
+        data:{
+            myData:myData,
+            myData3:myData,
+            isShow:true,
+            serachResult:false,
+            inputVal:''
+        },
+        created:function () {
+//          console.log(this.clearBr(this.myData));
+        },
+        watch:{
+            inputVal:function (n) {
+                this.searchData()
+            }
+        },
+        methods:{
+            test:function (val) {
+                return val
+            },
+            clearBr:function (data) {
+              return data.replace(/\s/g,"")
+            },
+            showLayer:function () {
+                this.isShow=!this.isShow;
+                this.inputVal={}
+            },
+            focusInput:function () {
+                this.myData=this.myData3;
+                this.serachResult=true
+            },
+            selectItem:function (item) {
+                this.inputVal=item.enName;
+                this.serachResult=false;
+
+            },
+            blurInput:function () {
+                this.serachResult=false
+            },
+            searchData:function () {
+                this.myData=this.myData3.filter(item=>{
+                    return this.clearBr(item.enName).indexOf(this.clearBr(this.inputVal))>=0
+
+                })
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
