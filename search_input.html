@@ -69,7 +69,7 @@
                 <input @click.stop  @focus="focusInput"  v-model="inputVal" type="text">
                 <div class="search-result" v-show="serachResult">
                     <ul>
-                        <li v-for="item in myData" @click="selectItem(item)">{{item.enName}}</li>
+                        <li v-for="item in searchData()" @click="selectItem(item)">{{item.enName}}</li>
                     </ul>
                 </div>
             </div>
@@ -79,7 +79,7 @@
         </div>
         <div class="btm">
             <ul class="clearfix">
-                <li v-for="item in myData">{{item.enName}}</li>
+                <li v-for="item in searchData()">{{item.enName}}</li>
             </ul>
         </div>
     </div>
@@ -95,23 +95,11 @@
         el:'#app',
         data:{
             myData:myData,
-            myData3:myData,
             isShow:true,
             serachResult:false,
             inputVal:''
         },
-        created:function () {
-//          console.log(this.clearBr(this.myData));
-        },
-        watch:{
-            inputVal:function (n) {
-                this.searchData()
-            }
-        },
         methods:{
-            test:function (val) {
-                return val
-            },
             clearBr:function (data) {
               return data.replace(/\s/g,"")
             },
@@ -120,7 +108,6 @@
                 this.inputVal={}
             },
             focusInput:function () {
-                this.myData=this.myData3;
                 this.serachResult=true
             },
             selectItem:function (item) {
@@ -132,7 +119,7 @@
                 this.serachResult=false
             },
             searchData:function () {
-                this.myData=this.myData3.filter(item=>{
+                return this.myData.filter(item=>{
                     return this.clearBr(item.enName).indexOf(this.clearBr(this.inputVal))>=0
 
                 })
