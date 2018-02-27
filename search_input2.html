@@ -126,54 +126,15 @@
 </div>
 
 
-<script src="search_data.js"></script>
-<script src="../js/vue.js"></script>
 <script>
-    console.log(data.returnData.OutCompareList);
-    var myData=data.returnData.OutCompareList;
-    new Vue({
-        el:'#app',
-        data:{
-            myData:myData,
-            isShow:false,
-            serachResult:false,
-            inputVal:''
-        },
-        mounted:function () {
+    var k=0,len=5,searchElement=2,O=[0,1,2,3,4]
+    while (k < len) {
 
-        },
-        watch:{
-          isShow:function () {
-              document.getElementsByTagName('body')[0].style.overflow=this.isShow?'hidden':'auto'
-          }
-        },
-        methods:{
-            clearBr:function (data) {
-              return data.replace(/\s/g,"")
-            },
-            showLayer:function () {
-                this.isShow=!this.isShow;
-            },
-            focusInput:function () {
-                this.serachResult=true
-            },
-            selectItem:function (item) {
-                this.inputVal=item.enName;
-                this.serachResult=false;
-
-            },
-            blurInput:function () {
-                this.serachResult=false
-            },
-            searchData:function () {
-                return this.myData.filter(item=>{
-                    return this.clearBr(item.enName).indexOf(this.clearBr(this.inputVal))>=0
-
-                })
-            }
+        if (k in O && O[k] === searchElement) {
+            console.log(k);
         }
-
-    })
+        k++;
+    }
 </script>
 </body>
 </html>
